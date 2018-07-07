@@ -17,6 +17,27 @@ var counter = {
 
 function countLetters(counter, sample_text){
   // FIX ME
+  const endIndex = sample_text.length - 1;
+  let i = 0; //currentIndex
+  let textFix1 = sample_text.replace(/\s/g, ""); //Remove space
+  let textFix2 = textFix1.toLowerCase(); //Make it lowercase, throws error when I try it on array index
+  let arrSample = textFix2.split("");
+
+  function recursify() {
+    if(i === endIndex) {
+      return counter;
+    } else {
+      let key = arrSample[i]; // Make a key that represent a sample_text character
+      if(counter.hasOwnProperty(key)) {
+        counter[key] ++; //If our counter object has key, then +1
+      }
+
+      i++; // Tracking currentIndex
+      recursify();
+    }
+  }
+
+  return recursify();
 }
 
 $(document).ready(function(){
